@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "LSIFileHelper.h"
+#import "LSIWeatherConditions.h"
 
 @interface DailyWeatherTests : XCTestCase
 
@@ -14,11 +16,15 @@
 
 @implementation DailyWeatherTests
 
-- (void)testExample {
-
-    // TODO: Use LSIFileHelper to load JSON from your test bundle
+- (void)testHourlyWeather {
     
-    // TODO: Create Unit Tests for each separate JSON file
+    NSData *weatherData = loadFile(@"HourlyWeather.json", [DailyWeatherTests class]);
+    
+    NSError *jsonError = nil;
+    
+    NSDictionary *weatherDictionary = [NSJSONSerialization JSONObjectWithData:weatherData options:0 error:&jsonError];
+    
+    if (jsonError)
 
 }
 
